@@ -53,6 +53,9 @@ Strikt aangrenzend --> Moet dezelfde moeder hebben
 	--global-page--backgroundColor: var(--global-color-neutral-xxxx-light);
 
 	--global-c-card--backgroundColor: var(--global-color-neutral-xxxxx-light);
+
+	--global-input-placeholder--color: var(--global-color-neutral-x-light);
+	--global-label--color: var(--global-color-neutral-xx-dark);
 	/* border stuff */
 	--global-borderRadius: 3px;
 	--global-borderWidth: 1px;
@@ -77,6 +80,7 @@ Strikt aangrenzend --> Moet dezelfde moeder hebben
 	--global-input-hover-borderColor: var(--global-color-neutral-xx-light);
 	--global-input-focus-borderColor: var(--global-color-alpha);
 	--global-input-boxShadow: 0 0 0 3px var(--global-color-alpha-x-transparent);
+	--global-border--color: var(--global-color-neutral-xxx-light);
 
 	--global-input-boxShadowSpread: 0 0 0 0px;
 	--global-input-boxShadowSpreadFocus: 0 0 0 4px;
@@ -92,6 +96,10 @@ Strikt aangrenzend --> Moet dezelfde moeder hebben
 		--global-c-card--backgroundColor: var(--global-color-neutral-xxx-dark);
 
 		--input-backgroundColor: var(--global-color-neutral-xxxx-dark);
+		--global-input-borderColor: var(--global-color-neutral-xxxx-dark);
+		--global-input-placeholder--color: var(--global-color-neutral-dark);
+		--global-label--color: var(--global-color-neutral-x-light);
+		--global-border--color: var(--global-color-neutral-xxxx-dark);
 	}
 }
 
@@ -265,7 +273,7 @@ input {
 }
 
 input::placeholder {
-	color: var(--global-color-neutral-x-light);
+	color: var(--global-input-placeholder--color);
 }
 
 /*------------------------------------*\
@@ -545,22 +553,32 @@ input::placeholder {
 	align-items: center;
 	justify-content: center;
 	margin-bottom: var(--global-whitespace-lg);
-}
 
+	--logo__path--1--fill: var(--global-color-neutral-xxxx-dark);
+	--logo__path--2--fill: var(--global-color-alpha);
+	--logo__path--3--fill: var(--color-alpha-x-dark);
+}
+@media (prefers-color-scheme: dark) {
+  .c-logo {
+    --logo__path--1--fill: var(--global-color-neutral-xxxxx-light);
+    --logo__path--2--fill: var(--logo__path--1--fill);
+    --logo__path--3--fill: var(--logo__path--1--fill);
+  }
+}
 .c-logo__symbol {
 	height: 100%;
 }
 
 .c-logo__path--1 {
-	fill: var(--global-color-neutral-xxxx-dark);
+	fill: var(--logo__path--1--fill);
 }
 
 .c-logo__path--2 {
-	fill: var(--global-color-alpha);
+	fill: var(--logo__path--2--fill);
 }
 
 .c-logo__path--3 {
-	fill: var(--color-alpha-x-dark);
+	fill: var(--logo__path--3--fill);
 }
 
 /*
@@ -587,7 +605,7 @@ input::placeholder {
 .c-card__footer {
 	text-align: center;
 	border-top: var(--global-borderWidth) solid
-		var(--global-color-neutral-xxx-light);
+		var(--global-border--color);
 }
 
 .c-card__title {
@@ -860,7 +878,7 @@ input::placeholder {
 	font-size: 14px;
 	padding-bottom: var(--global-whitespace-xs);
 	line-height: calc(var(--global-baseline) * 2);
-	color: var(--global-color-neutral-xx-dark);
+	color: var(--global-label--color);
 }
 
 .c-label--option {
