@@ -1,0 +1,41 @@
+/* Toggle */
+.c-custom-toggle {
+	display: flex;
+	align-items: center;
+
+	--local-toggle-backgroundColor: var(--global-color-neutral-xxxx-light);
+	--local-toggle-borderColor: var(--global-color-neutral-xxx-light);
+	--local-toggle-transformX: 0;
+}
+
+.c-custom-toggle__fake-input {
+	display: block;
+	width: 48px;
+	height: 24px;
+	margin-right: 16px;
+
+	background: var(--local-toggle-backgroundColor);
+	border: 1px solid var(--local-toggle-borderColor);
+	border-radius: 24px;
+}
+
+.c-custom-toggle__fake-input::after {
+	content: '';
+	display: block;
+	width: 22px;
+	height: 22px;
+
+	background: var(--global-input-backgroundColor);
+	border-radius: 50%;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.016);
+
+	will-change: transform;
+	transform: translateX(var(--local-toggle-transformX));
+	transition: transform 200ms ease-in;
+}
+
+.c-option--hidden:checked + .c-custom-toggle {
+	--local-toggle-backgroundColor: var(--global-color-alpha);
+	--local-toggle-borderColor: var(--global-color-alpha-dark);
+	--local-toggle-transformX: 24px;
+}
