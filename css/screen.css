@@ -82,6 +82,9 @@ Strikt aangrenzend --> Moet dezelfde moeder hebben
 	--global-input-boxShadow: 0 0 0 3px var(--global-color-alpha-x-transparent);
 	--global-border--color: var(--global-color-neutral-xxx-light);
 	--global-option-fake-input--color: var(--global-color-neutral-xxx-light);
+	--global-option-fake-input--backgroundColor: var(
+		--global-color-neutral-xxxxx-light
+	);
 
 	--global-input-boxShadowSpread: 0 0 0 0px;
 	--global-input-boxShadowSpreadFocus: 0 0 0 4px;
@@ -90,7 +93,7 @@ Strikt aangrenzend --> Moet dezelfde moeder hebben
 	--custom-option-boxShadow: 0 0 0 3px var(--global-color-alpha-x-transparent);
 }
 @media (prefers-color-scheme: dark) {
-    :root{
+	:root {
 		--global-page--color: var(--global-color-neutral-xxxx-light);
 		--global-page--backgroundColor: var(--global-color-neutral-xxxx-dark);
 
@@ -102,7 +105,12 @@ Strikt aangrenzend --> Moet dezelfde moeder hebben
 		--global-label--color: var(--global-color-neutral-x-light);
 		--global-border--color: var(--global-color-neutral-xxxx-dark);
 		--global-input-color: var(--global-color-neutral-xxxx-light);
-		--global-option-fake-input--color: var(--global-color-neutral-xxxx-dark);
+		--global-option-fake-input--color: var(
+			--global-color-neutral-xxxx-dark
+		);
+		--global-option-fake-input--backgroundColor: var(
+			--global-color-neutral-xxxx-dark
+		);
 	}
 }
 
@@ -529,7 +537,7 @@ input::placeholder {
 */
 
 .o-hide-accessible {
-    /* Chrome ziet 1px x 1px --> Niet volledig weg  --> Mensen die tabben is nog altijd toegankelijk */
+	/* Chrome ziet 1px x 1px --> Niet volledig weg  --> Mensen die tabben is nog altijd toegankelijk */
 	position: absolute;
 	width: 1px;
 	height: 1px;
@@ -562,11 +570,11 @@ input::placeholder {
 	--logo__path--3--fill: var(--color-alpha-x-dark);
 }
 @media (prefers-color-scheme: dark) {
-  .c-logo {
-    --logo__path--1--fill: var(--global-color-neutral-xxxxx-light);
-    --logo__path--2--fill: var(--logo__path--1--fill);
-    --logo__path--3--fill: var(--logo__path--1--fill);
-  }
+	.c-logo {
+		--logo__path--1--fill: var(--global-color-neutral-xxxxx-light);
+		--logo__path--2--fill: var(--logo__path--1--fill);
+		--logo__path--3--fill: var(--logo__path--1--fill);
+	}
 }
 .c-logo__symbol {
 	height: 100%;
@@ -607,8 +615,7 @@ input::placeholder {
 
 .c-card__footer {
 	text-align: center;
-	border-top: var(--global-borderWidth) solid
-		var(--global-border--color);
+	border-top: var(--global-borderWidth) solid var(--global-border--color);
 }
 
 .c-card__title {
@@ -683,18 +690,20 @@ input::placeholder {
 	/*border-color: var(--global-color-neutral-xx-light);
         Als de specifieke var niet vindbaar is --> Dan gebruik je de default var
     */
-    /*Indien er een error is met deze color --> Default red pakken*/
-    --input-focus-borderColor: rbg(255, 0, 38)
+	/*Indien er een error is met deze color --> Default red pakken*/
+	--input-focus-borderColor: rbg(255, 0, 38);
 	border-color: var(
 		--global-input-hover-borderColor,
 		var(--global-color-neutral-xx-light)
-    );
-    
+	);
 }
 
 .c-input:focus,
 .c-input:active {
-	border-color: var(var(--global-input-focus-borderColor), var(--global-color-alpha));
+	border-color: var(
+		var(--global-input-focus-borderColor),
+		var(--global-color-alpha)
+	);
 	box-shadow: 0 0 0 3px var(--global-color-alpha-x-transparent);
 }
 
@@ -703,82 +712,92 @@ input::placeholder {
 .c-option {
 	margin-right: var(--global-whitespace-sm);
 }
-.c-custom-option{
-    display: flex;
+.c-custom-option {
+	display: flex;
 
-    --custom-option-focus-borderColor: var(--global-input-focus-borderColor);
-    --custom-option-boxShadowColor: var(--global-input-boxShadowColor);
-    --custom-option-focus-boxShadow: var(--global-input-boxShadowSpread) var(--custom-option-boxShadowColor);
+	--custom-option-focus-borderColor: var(--global-input-focus-borderColor);
+	--custom-option-boxShadowColor: var(--global-input-boxShadowColor);
+	--custom-option-focus-boxShadow: var(--global-input-boxShadowSpread)
+		var(--custom-option-boxShadowColor);
+	--custom-option-hover-borderColor: var(--global-color-neutral-xx-light);
 }
 .c-option--hidden:checked + .c-custom-option {
-    /* Do magic stuff here, for example:
+	/* Do magic stuff here, for example:
     Als we de c-option hidde checked is --> Daaronder c-sustom-option --> Deze background red geven
     */
-      /*background-color: red;*/
-      fill: blue;
-  }
+	/*background-color: red;*/
+	fill: blue;
+}
 
-  .c-option--hidden:checked + .c-custom-option .c-custom-option__symbol {
-    /*
+.c-option--hidden:checked + .c-custom-option .c-custom-option__symbol {
+	/*
       Do magic stuff here, for example: */
-      opacity: 1;
-      transform: scale(1);
-  }
-  .c-custom-option__symbol{
-      opacity: 0;
-      transform: scale(0);
-      display: block;
-      will-change: opacity, transform; /* Hint voor de browser, dat de opacity zal veranderen! */
-      transition: opacity 200ms ease-out, transform 210ms cubic-bezier(0.46, -0.57, 0.56, 1.68);
-  }
-  .c-custom-option__fake-input{
-      align-items: center;
-      justify-content: center;
-      display: flex;
-      height: 16px;
-      width: 16px;
-      border: 1px solid var(--global-option-fake-input--color);
-      margin-right: 8px;
-      box-shadow:  var(--custom-option-boxShadow, 0);
-  }
-  .c-custom-option__fake-input--checkbox{
-      border-radius: var(--global-borderRadius);
-  }
-  .c-custom-option__fake-input--radio{
-      border-radius: 50%;
-  }
-  .c-custom-option:hover{
-      --custom-option-borderColor: var(--custom-option-hover-borderColor);
-    }
-    .c-option--hidden:focus + .c-custom-option .c-custom-option__fake-input, 
-    .c-option--hidden:active + .c-custom-option .c-custom-option__fake-input{
-        border-color: var(--global-color-alpha);
-        box-shadow: var(--custom-option-focus-boxShadow, 0);
-    }
+	opacity: 1;
+	transform: scale(1);
+}
+.c-custom-option__symbol {
+	opacity: 0;
+	transform: scale(0);
+	display: block;
+	will-change: opacity, transform; /* Hint voor de browser, dat de opacity zal veranderen! */
+	transition: opacity 200ms ease-out,
+		transform 210ms cubic-bezier(0.46, -0.57, 0.56, 1.68);
+}
+.c-custom-option__fake-input {
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	height: 16px;
+	width: 16px;
+	border: 1px solid var(--global-option-fake-input--color);
+	margin-right: 8px;
+	background-color: var(--global-option-fake-input--backgroundColor);
+	/*box-shadow:  var(--custom-option-boxShadow, 0);*/
+}
+.c-custom-option__fake-input:hover {
+	border-color: var(--global-color-neutral-xx-light);
+	/*box-shadow:  var(--custom-option-boxShadow, 0);*/
+}
+.c-custom-option__fake-input--checkbox {
+	border-radius: var(--global-borderRadius);
+}
+.c-custom-option__fake-input--radio {
+	border-radius: 50%;
+}
+.c-custom-option:hover {
+	--custom-option-borderColor: var(--global-color-neutral-xx-light);
+	border-color: var(--custom-option-hover-borderColor);
+}
+.c-option--hidden:focus + .c-custom-option .c-custom-option__fake-input,
+.c-option--hidden:active + .c-custom-option .c-custom-option__fake-input {
+	border-color: var(--global-color-alpha);
+	box-shadow: var(--custom-option-focus-boxShadow, 0);
+	box-shadow: var(--custom-option-boxShadow, 0);
+}
 
-  .c-custom-option__fake-input--checkbox .c-custom-option__symbol {
-    /*Stuff for the checkbox icon...*/
-    height: 10px;
-    width: 10px;
-    /*size: 10px;*/
-    fill: var(--global-color-alpha);
-  }
-  .c-option-list{
-      margin-bottom: 24px;
-  }
-  .c-option-list__item{
-      margin-bottom: 12px;
-  }
-  
-  .c-custom-option__fake-input--radio .c-custom-option__symbol {
-    /*Stuff for the radio button icon...*/
-    width: 6px;
-    height: 6px;
-    background: var(--global-color-alpha);
-    border-radius: 50%;
-  }
-  /*Toggle*/
-  /*.c-custom-toggle{
+.c-custom-option__fake-input--checkbox .c-custom-option__symbol {
+	/*Stuff for the checkbox icon...*/
+	height: 10px;
+	width: 10px;
+	/*size: 10px;*/
+	fill: var(--global-color-alpha);
+}
+.c-option-list {
+	margin-bottom: 24px;
+}
+.c-option-list__item {
+	margin-bottom: 12px;
+}
+
+.c-custom-option__fake-input--radio .c-custom-option__symbol {
+	/*Stuff for the radio button icon...*/
+	width: 6px;
+	height: 6px;
+	background: var(--global-color-alpha);
+	border-radius: 50%;
+}
+/*Toggle*/
+/*.c-custom-toggle{
       display: flex;
       align-items: center;
       --local-toggle-backgruondColor: var(--global-input-backgroundColor);
@@ -812,7 +831,7 @@ input::placeholder {
       transform: translate(24px);
   }
   */
-  /* Toggle */
+/* Toggle */
 .c-custom-toggle {
 	display: flex;
 	align-items: center;
@@ -821,7 +840,9 @@ input::placeholder {
 	--local-toggle-borderColor: var(--global-color-neutral-xxx-light);
 	--local-toggle-transformX: 0;
 
-	--local-toggle-boxShadow: var(--global-input-boxShadowSpread); /* Standaard nemen we lege values */
+	--local-toggle-boxShadow: var(
+		--global-input-boxShadowSpread
+	); /* Standaard nemen we lege values */
 	--local-toggle-boxShadowColor: var(--global-color-alpha-x-transparent);
 }
 
@@ -837,7 +858,7 @@ input::placeholder {
 
 	box-shadow: var(--local-toggle-boxShadow) var(--local-toggle-boxShadowColor);
 }
-.c-option--hidden:focus + .c-custom-toggle{
+.c-option--hidden:focus + .c-custom-toggle {
 	--local-toggle-boxShadow: var(--global-input-boxShadowSpreadFocus);
 }
 
@@ -861,13 +882,13 @@ input::placeholder {
 	--local-toggle-borderColor: var(--global-color-alpha-dark);
 	--local-toggle-transformX: 24px;
 }
-.c-custom-select{
+.c-custom-select {
 	display: block;
 }
-.c-custom-select__symbol{
-	fill: #B5B6C0;
+.c-custom-select__symbol {
+	fill: #b5b6c0;
 }
-.c-custom-select__symbol{
+.c-custom-select__symbol {
 	position: absolute;
 }
 /*
