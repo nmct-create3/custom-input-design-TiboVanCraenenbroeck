@@ -81,6 +81,7 @@ Strikt aangrenzend --> Moet dezelfde moeder hebben
 	--global-input-focus-borderColor: var(--global-color-alpha);
 	--global-input-boxShadow: 0 0 0 3px var(--global-color-alpha-x-transparent);
 	--global-border--color: var(--global-color-neutral-xxx-light);
+	--global-option-fake-input--color: var(--global-color-neutral-xxx-light);
 
 	--global-input-boxShadowSpread: 0 0 0 0px;
 	--global-input-boxShadowSpreadFocus: 0 0 0 4px;
@@ -100,6 +101,8 @@ Strikt aangrenzend --> Moet dezelfde moeder hebben
 		--global-input-placeholder--color: var(--global-color-neutral-dark);
 		--global-label--color: var(--global-color-neutral-x-light);
 		--global-border--color: var(--global-color-neutral-xxxx-dark);
+		--global-input-color: var(--global-color-neutral-xxxx-light);
+		--global-option-fake-input--color: var(--global-color-neutral-xxxx-dark);
 	}
 }
 
@@ -734,7 +737,7 @@ input::placeholder {
       display: flex;
       height: 16px;
       width: 16px;
-      border: 1px solid var(--global-color-neutral-xxx-light);
+      border: 1px solid var(--global-option-fake-input--color);
       margin-right: 8px;
       box-shadow:  var(--custom-option-boxShadow, 0);
   }
